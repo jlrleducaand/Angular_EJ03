@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListadoProductosComponent } from './listado/listado.productos.component';
 import { MainProductosComponent } from './main/main.productos.component';
-import { FormularioProductosComponent } from './formulario/formulario.productos.component';
-import { Producto } from './productos.interface';
+import { FormularioCrearProductosComponent } from './formularioCrear/formularioCrear.productos.component';
+import { Producto } from './producto.interface';
 export { Producto };
 
 @NgModule({
@@ -12,12 +12,12 @@ export { Producto };
     CommonModule,
     ListadoProductosComponent,
     MainProductosComponent,
-    FormularioProductosComponent
+    FormularioCrearProductosComponent
   ],
   exports: [
     ListadoProductosComponent,
     MainProductosComponent,
-    FormularioProductosComponent
+    FormularioCrearProductosComponent
   ]
 })
 export class ProductosModule { }

@@ -4,28 +4,37 @@ import { Producto } from '../productos.module';
 import { ProductosService } from '../../services/productos.service';
 
 @Component({
-  selector: 'app-listado-productos',
+  selector: 'app-formulario-editar-producto',
   standalone: true,
-  imports: [NgFor, NgIf],
-  templateUrl: './listado.productos.component.html',
-  styleUrl: './listado.productos.component.css'
+  imports: [],
+  templateUrl: './formulario-editar.productos.component.html',
+  styleUrl: './formulario-editar.productos.component.css'
 })
-export class ListadoProductosComponent {
+
+
+export class FormularioEditarProductosComponent {
   productos:Producto[]=[];
   editado:Producto|null|undefined = null;
-  eliminado: Producto|null|undefined = null;
   encontrado: boolean=true;
 
+  datosFormularios:Producto = {
+    id:1,
+    nombre: "",
+    precio: 0,
+    categoria: "",
+    estado:"",
+    aceptado:false
+  }
   constructor(private _productosServicios:ProductosService){
 
     this.productos = _productosServicios.getProductos();
-    
+
     this._productosServicios.productosChanged.subscribe(() => {
       this.productos = _productosServicios.getProductos();
     })
   }
 
-  eliminar(producto:string):void {
+  editar(datos:string):void {
 
     this.eliminado=this._productosServicios.eliminar(producto);
     this.encontrado = (this.eliminado!=null);
@@ -34,17 +43,5 @@ export class ListadoProductosComponent {
       this.eliminado = null;
       this.encontrado = true;
     }, (1000));
-  }
-
-  editar(producto:string):Producto{
-    this.editado=this._productosServicios.buscar(producto);
-    this.encontrado = (this.editado!=null);
-
-    setTimeout(() => {
-      this.editado = null;
-      this.encontrado = true;
-    }, (1000));
-
-    return <Producto>this.editado;
   }
 }

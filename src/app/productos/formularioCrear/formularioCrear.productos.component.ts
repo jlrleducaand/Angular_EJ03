@@ -2,21 +2,24 @@ import {JsonPipe, NgIf} from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ProductosService } from '../../services/productos.service';
-import { Producto } from '../productos.interface';
+import { Producto } from '../producto.interface';
 
 
 @Component({
-  selector: 'app-formulario-productos',
+  selector: 'app-formularioCrear-productos',
   standalone: true,
   imports: [FormsModule, JsonPipe, NgIf],
-  templateUrl: './formulario.productos.component.html',
-  styleUrl: './formulario.productos.component.css'
+  templateUrl: './formularioCrear.productos.component.html',
+  styleUrl: './formularioCrear.productos.component.css'
 })
-export class FormularioProductosComponent {
+export class FormularioCrearProductosComponent {
   datosFormularios:Producto = {
+    id:1,
     nombre: "",
     precio: 0,
-    categoria: ""
+    categoria: "",
+    estado:"",
+    aceptado:false
   }
 
 

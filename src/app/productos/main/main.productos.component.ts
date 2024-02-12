@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { ListadoProductosComponent } from '../listado/listado.productos.component';
-import { FormularioProductosComponent } from '../formulario/formulario.productos.component';
+import { FormularioCrearProductosComponent } from '../formularioCrear/formularioCrear.productos.component';
 
 @Component({
   selector: 'app-main-productos',
   standalone: true,
-  imports: [ListadoProductosComponent, FormularioProductosComponent],
+  imports: [ListadoProductosComponent, FormularioCrearProductosComponent],
   templateUrl: './main.productos.component.html',
   styleUrl: './main.productos.component.css'
 })

@@ -1,6 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {Usuario} from "../usuarios/usuario.interface";
-import {Producto} from "../productos/productos.interface";
+import {Producto} from "../productos/producto.interface";
 
 @Injectable({
   providedIn: 'root'
