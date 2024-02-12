@@ -1,0 +1,59 @@
+<div class="row bg-primary">
+<div class="col text-white text-center">FORMULARIO</div>
+</div>
+<form class="form-group" novalidate (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <div class="row">
+        <div class="col">
+            <div form-group row>
+                <input class="col my-2 form-control ng-touched" type="text"
+                       name="nombre"
+                       [(ngModel)]="datosFormularios.nombre"
+                       required
+                       minlength="4"
+                       placeholder="Nombre"
+                       #nombre="ngModel">
+                <div *ngIf="nombre.errors?.['required']" class="col-8">Nombre Requerido</div>
+                <div *ngIf="nombre.errors?.['minlength']" class="col-8">Longitud mínima 4 caracteres</div>
+            </div>
+            <div form-group row>
+                <input class="col my-2 form-control ng-touched" type="number"
+                       name="edad"
+                       [(ngModel)]="datosFormularios.edad"
+                       required
+                       min="18"
+                       placeholder="Edad"
+                       #edad="ngModel">
+                <div *ngIf="edad.errors?.['required']" class="col-8">Edad Requerida</div>
+                <div *ngIf="edad.errors?.['min']" class="col-8">Edad mínima 18 </div>
+            </div>
+            <div form-group row>
+                <input class="col my-2 form-control ng-touched" type="email"
+                       name="email"
+                       [(ngModel)]="datosFormularios.email"
+                       required
+                       minlength="9"
+                       pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                       placeholder="E-mail"
+                       #email="ngModel">
+                <div *ngIf="email.errors?.['required']" class="col-8">Email Requerido</div>
+                <div *ngIf="email.errors?.['minlength']" class="col-8">Longitud mínima 9 caracteres</div>
+                <div *ngIf="email.errors?.['pattern']" class="col-8">Introduzca un correo válido</div>
+
+            </div>
+            <div form-group row>
+                <input class="col my-2 form-control ng-touched" type="text"
+                       name="profesion"
+                       [(ngModel)]="datosFormularios.profesion"
+                       required
+                       minlength="4"
+                       placeholder="Profesion"
+                       #profesion="ngModel">
+                <div *ngIf="profesion.errors?.['required']" class="col-8">Profesión Requerida</div>
+                <div *ngIf="profesion.errors?.['minlength']" class="col-8">Longitud mínima 4 caracteres</div>
+                <button [disabled]="!form.valid" type="submit" id="submit" class=" col-6 btn btn-primary my-2">Enviar</button>
+            </div>
+        </div>
+    </div>
+</form>
+{{ datosFormularios | json }}
+

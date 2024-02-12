@@ -1,0 +1,45 @@
+<div class="row bg-primary">
+    <div class="col text-white text-center">FORMULARIO</div>
+</div>
+<form class="form-group" novalidate (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <div class="row">
+        <div class="col">
+            <div form-group row>
+                <input class="col-12 my-2 form-control ng-touched" type="text"
+                   name="nombre"
+                   [(ngModel)]="datosFormularios.nombre"
+                   required
+                   minlength="4"
+                   placeholder="Nombre"
+                   #nombre="ngModel">
+                <div *ngIf="nombre.errors?.['required']" class="col-8">Nombre Requerido</div>
+                <div *ngIf="nombre.errors?.['minlength']" class="col-8">Longitud mínima 4 caracteres</div>
+            </div>
+            <div form-group row>
+                <input class="col-12 my-2 form-control ng-touched" type="number"
+                   name="precio"
+                   [(ngModel)]="datosFormularios.precio"
+                   required
+                   min="10"
+                   placeholder="Precio"
+                   #precio="ngModel">
+                <div *ngIf="precio.errors?.['required']" class="col-8">Precio Requerido</div>
+                <div *ngIf="precio.errors?.['min']" class="col-8">Precio mínimo 10€</div>
+
+            </div>
+            <div form-group row>
+                <input class="col-12 my-2 form-control ng-touched" type="text"
+                   name="categoria"
+                   [(ngModel)]="datosFormularios.categoria"
+                   required
+                   minlength="4"
+                   placeholder="Categoría"
+                   #categoria="ngModel">
+                <div *ngIf="categoria.errors?.['required']" class="col-8">Categoría Requerida</div>
+                <div *ngIf="categoria.errors?.['minlength']" class="col-8">Longitud mínima 4 caracteres</div>
+                <button [disabled]="!form.valid" type="submit" id="submit" class=" col-6 btn btn-primary my-2">Enviar</button>
+            </div>
+        </div>
+    </div>
+</form>
+{{ datosFormularios | json }}
