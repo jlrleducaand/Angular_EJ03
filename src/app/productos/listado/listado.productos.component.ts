@@ -11,6 +11,7 @@ import { ProductosService } from '../../services/productos.service';
   styleUrl: './listado.productos.component.css'
 })
 export class ListadoProductosComponent {
+  items: string[] = ['id', 'nombre', 'precio', 'Cat', 'estado', 'acept' ];
   productos:Producto[]=[];
   editado:Producto|null|undefined = null;
   eliminado: Producto|null|undefined = null;
@@ -20,31 +21,45 @@ export class ListadoProductosComponent {
 
     this.productos = _productosServicios.getProductos();
     
-    this._productosServicios.productosChanged.subscribe(() => {
+    this._productosServicios.productoChanged.subscribe(() => {
       this.productos = _productosServicios.getProductos();
     })
   }
 
-  eliminar(producto:string):void {
+  delete(producto:string):void {
 
-    this.eliminado=this._productosServicios.eliminar(producto);
+    this.eliminado=this._productosServicios.delete(producto);
     this.encontrado = (this.eliminado!=null);
 
     setTimeout(() => {
-      this.eliminado = null;
+      this.eliminado = null
+
       this.encontrado = true;
     }, (1000));
   }
 
-  editar(producto:string):Producto{
-    this.editado=this._productosServicios.buscar(producto);
-    this.encontrado = (this.editado!=null);
+  update(producto:string):void{
+    let prod = this._productosServicios.buscarPorNombre(producto);
+    if (prod!=null){
+      this.editado=this._productosServicios.update(prod);
+      this.encontrado = (this.editado!=null);
+    }
+
 
     setTimeout(() => {
       this.editado = null;
       this.encontrado = true;
     }, (1000));
 
-    return <Producto>this.editado;
+  }
+
+  create(){
+
+  }
+
+  detail(producto:string):Producto{
+    const prod: Producto | null = this._productosServicios.buscarPorNombre(producto);
+
+    return <Producto>prod;
   }
 }

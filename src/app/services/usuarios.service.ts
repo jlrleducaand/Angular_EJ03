@@ -6,20 +6,34 @@ import {Producto} from "../productos/producto.interface";
   providedIn: 'root'
 })
 export class UsuariosService {
+
   private _usuarios:Usuario[]=[
     {nombre:"Manuel", edad:56, email:"Manuel@gmail.com",profesion:"no tiene profesion"},
     {nombre:"Antonio", edad:28, email:"antonio@gmail.com", profesion:"no tiene profesion"}
   ]
-
-usuariosChanged:EventEmitter<null>;
+     usuarioBuscado:EventEmitter<null>;
+     usuariosChanged:EventEmitter<null>;
   constructor() {
     this.usuariosChanged = new EventEmitter;
+    this.usuarioBuscado = new EventEmitter;
   }
+
+
 
   getUsuarios() :Usuario[] {
     return Array.from(this._usuarios);
   }
-
+  buscar(usuario:string):Usuario|null {
+    let usuarioBuscado:Usuario|null;
+    let pos=this._usuarios.findIndex((x)=> x.nombre.toLocaleLowerCase() == usuario.toLocaleLowerCase() );
+    if(pos>=0) {
+      usuarioBuscado = this._usuarios[pos];
+      this.usuarioBuscado.emit();
+    }else{
+      usuarioBuscado = null;
+    }
+    return usuarioBuscado;
+  }
   eliminar(usuario:string):Usuario|null{
     let usuarioEliminado:Usuario|null;
 

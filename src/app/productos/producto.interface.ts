@@ -2,7 +2,7 @@ export interface Producto {
     id:number,
     nombre: string,
     precio: number,
-    categoria: string,
-    estado:string,
-    aceptado: boolean
+    categoria: string,  //selectbox
+    estado:string,      // radio
+    aceptado: boolean   //checkbox
   }

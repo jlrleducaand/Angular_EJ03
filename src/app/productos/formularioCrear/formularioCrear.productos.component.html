@@ -5,6 +5,15 @@
     <div class="row">
         <div class="col">
             <div form-group row>
+                <input class="col-12 my-2 form-control ng-touched" type="number"
+                       name="id"
+                       [(ngModel)]="datosFormularios.id"
+                       required
+                       value=""
+                       min="{{_productosService.getProductos().length + 1}}"
+                       #id="ngModel">
+            </div>
+            <div form-group row>
                 <input class="col-12 my-2 form-control ng-touched" type="text"
                    name="nombre"
                    [(ngModel)]="datosFormularios.nombre"
@@ -28,16 +37,29 @@
 
             </div>
             <div form-group row>
-                <input class="col-12 my-2 form-control ng-touched" type="text"
-                   name="categoria"
-                   [(ngModel)]="datosFormularios.categoria"
-                   required
-                   minlength="4"
-                   placeholder="Categoría"
-                   #categoria="ngModel">
+                   <select formControlName="Categoria" class="col-12 my-2 form-control"
+                           type="text"  name="categoria"
+                           [(ngModel)]="datosFormularios.categoria"
+                           #categoria="ngModel">
+
+                       <option value="">Seleccione Categoria</option>
+                       <option *ngFor="let c of categorias" [value]="c.nombre" >
+                            {{c.nombre}}
+                       </option>
+                   </select>
+<!--                <input class="col-12 my-2 form-control ng-touched" type="text"-->
+<!--                       name="categoria"-->
+<!--                       [(ngModel)]="datosFormularios.categoria"-->
+<!--                       required-->
+<!--                       min="10"-->
+<!--                       placeholder="Categoria"-->
+<!--                       #categoria="ngModel">-->
+
                 <div *ngIf="categoria.errors?.['required']" class="col-8">Categoría Requerida</div>
                 <div *ngIf="categoria.errors?.['minlength']" class="col-8">Longitud mínima 4 caracteres</div>
+
                 <button [disabled]="!form.valid" type="submit" id="submit" class=" col-6 btn btn-primary my-2">Enviar</button>
+
             </div>
         </div>
     </div>

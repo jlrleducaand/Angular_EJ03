@@ -29,18 +29,18 @@ export class FormularioEditarProductosComponent {
 
     this.productos = _productosServicios.getProductos();
 
-    this._productosServicios.productosChanged.subscribe(() => {
+    this._productosServicios.productoChanged.subscribe(() => {
       this.productos = _productosServicios.getProductos();
     })
   }
 
-  editar(datos:string):void {
+  editar(producto:string):void {
 
-    this.eliminado=this._productosServicios.eliminar(producto);
-    this.encontrado = (this.eliminado!=null);
+    this.editado=this._productosServicios.delete(producto);
+    this.encontrado = (this.editado!=null);
 
     setTimeout(() => {
-      this.eliminado = null;
+      this.editado = null;
       this.encontrado = true;
     }, (1000));
   }

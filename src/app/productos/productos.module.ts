@@ -5,6 +5,8 @@ import { MainProductosComponent } from './main/main.productos.component';
 import { FormularioCrearProductosComponent } from './formularioCrear/formularioCrear.productos.component';
 import { Producto } from './producto.interface';
 export { Producto };
+import { Categoria } from "./categoria.interface";
+export { Categoria };
 
 @NgModule({
   declarations: [],

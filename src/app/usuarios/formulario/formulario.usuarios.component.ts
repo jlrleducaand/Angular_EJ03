@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Usuario} from "../usuario.interface";
 import {UsuariosService} from "../../services/usuarios.service";
-import {constructor} from "jasmine";
 
 
 @Component({
@@ -12,13 +11,12 @@ import {constructor} from "jasmine";
   imports: [FormsModule, JsonPipe, NgIf, ReactiveFormsModule],
   templateUrl: './formulario.usuarios.component.html',
   styleUrl: './formulario.usuarios.component.css'
-})
+
 export class FormularioUsuariosComponent {
   dForm: FormGroup | undefined;
 
   _usuariosService: usuarios.service
 
-  }
 
 
   constructor(this.dForm = new FormGroup({
@@ -54,6 +52,6 @@ export class FormularioUsuariosComponent {
       console.log(this._usuariosService.getUsuarios());
     }
 
-
-
 }
+
+})
