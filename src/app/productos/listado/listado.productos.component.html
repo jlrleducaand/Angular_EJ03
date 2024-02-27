@@ -4,36 +4,57 @@
     </div>
 </div>
 <div class="row bg-primary">
-    <div class="col text-white text-center">{{productos.length}} - PRODUCTOS</div>
+    <div class="col text-white text-center">{{ productos.length }} - PRODUCTOS</div>
+</div>
+<div class="row bg-info">
+    <ul class="row col text-white text-center   list-unstyled">
+        <li class="col-1 ">Id</li>
+        <li class="col-3 ">Nombre</li>
+        <li class="col-1 ">Precio</li>
+        <li class="col-2 ">Cat</li>
+    </ul>
 </div>
 
-
-<div class="row" *ngFor="let item of productos">
-    <div class="col-3 my-1">
-        {{ item.nombre }}
-    </div>
-    <div class="col-1 my-1">
-        {{ item.precio }}
-    </div>
-    <div class="col-2 my-1">
-        {{ item.categoria }}
+<div class="row" *ngFor="let prod of productos">
+    <div class="col-1 my-1 py-2"> {{ prod.id }}</div>
+    <div class="col-3 my-1 py-2"> {{ prod.nombre }}</div>
+    <div class="col-1 my-1 py-2"> {{ prod.precio }}</div>
+    <div class="col-2 my-1 py-2"> {{ prod.categoria }}</div>
+    <div class="row col gap-2">
+        <button (click)="editar(prod)"
+                type="button" name="editar"
+                id="editar" class="col-5 btn btn-warning my-2">Editar
+        </button>
+        <button (click)="eliminar(prod)"
+                type="button" name="eliminar"
+                id="eliminar" class="col-5 btn btn-danger my-2">Eliminar
+        </button>
     </div>
 
 </div>
 <div>
-<div class="row my-2">
-    <input class="col-7" type="text" #nombreproducto>
-    <button (click)="eliminar(nombreproducto.value)" 
-            type="button" name="eliminar" 
-            id="eliminar" class="col-6 btn btn-primary my-2">Eliminar</button>
-</div>
+    <div class="row my-2 gap-1">
+        <input class="col-7" type="text" #nombreproducto>
+        <button (click)="buscar(nombreproducto.value)"
+                type="button" name="buscar"
+                id="Buscar" class="col-5 btn btn-primary my-2">Buscar
+        </button>
+
+    </div>
 </div>
 
-<div class="warning bg-warning" *ngIf="eliminado!=null">
-        Elemento eliminado: {{eliminado.nombre}}, {{eliminado.precio}}, {{eliminado.categoria}}
+<div class="warning bg-warning" *ngIf="pEliminar!=null">
+    Elemento aEliminar: {{ pEliminar.nombre }}, {{ pEliminar.precio }}, {{ pEliminar.categoria }}
+</div>
+<div class="warning bg-warning" *ngIf="pEditar!=null">
+    Elemento aEditar: {{ pEditar.nombre }}, {{ pEditar.precio }}, {{ pEditar.categoria }}
+</div>
+<div class="warning bg-warning" *ngIf="pBuscar!=null">
+    Elemento aBuscar: {{ pBuscar.nombre }}, {{ pBuscar.precio }}, {{ pBuscar.categoria }}
 </div>
 
-<div class="warning bg-warning" 
-    *ngIf="encontrado==false">
-    Producto no encontrado
+<div class="warning bg-warning"
+     *ngIf="!hecho">
+
 </div>
+
