@@ -13,9 +13,7 @@ import {Producto} from '../productos.interface';
     styleUrl: './formulario.productos.component.css'
 })
 
-
 export class FormularioProductosComponent implements OnInit {
-
 
     editado: Producto | null | undefined = null;
     creado: Producto | null | undefined = null;
@@ -39,7 +37,6 @@ export class FormularioProductosComponent implements OnInit {
     }
 
     hecho: boolean = true;
-
 
     constructor(private _productosServicios: ProductosService) {
         this._productos=this._productosServicios.getProductos().sort((a, b) => a.id - b.id);
@@ -83,7 +80,6 @@ export class FormularioProductosComponent implements OnInit {
 
             }, (2000));
         })
-
     }
 
 
@@ -91,7 +87,7 @@ export class FormularioProductosComponent implements OnInit {
     }
 
     onSubmit(f: NgForm) {
-
+    //LLegan los datos  formulario al pulsar el boton del mismo  aqui se recogen.
         //carga la lista   y el producto Seleccionado
         this._productos = (this._productosServicios.getProductos());
         // crea un array con solo los id de la lista
